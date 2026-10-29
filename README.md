@@ -44,9 +44,9 @@ Results obtained with the demo samples **will differ from those reported in the 
 ## Requirements
 
 - Google Earth Engine account (for `gee/`)
-- Python 3.13 with scikit-learn 1.6.1, XGBoost 3.4.1, CatBoost 1.2.10, SHAP 0.52.0,
-  NumPy, pandas, rasterio, geopandas, esda and libpysal
-  (exact versions in `python/00_environment_versions.ipynb`)
+- Python 3.13 with scikit-learn 1.6.1, XGBoost 3.4.1 and CatBoost 1.2.10 (Section 2.5 of the paper),
+  plus SHAP, NumPy, pandas, rasterio, geopandas, esda and libpysal.
+  Step 04 records the full computing environment in `environment.json` when it runs.
 - The notebooks also run on Google Colab.
 
 ## Citation
