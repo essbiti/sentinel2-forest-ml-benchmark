@@ -2,7 +2,7 @@
 
 Code and demo data for:
 
-> Chikh Essbiti, M., et al. (2026). Benchmarking Ten Machine-Learning Algorithms for
+> Essbiti, M. C., et al. (2026). Benchmarking Ten Machine-Learning Algorithms for
 > Mediterranean Forest Mapping with Sentinel-2. *Remote Sensing*. DOI: <paper DOI>
 
 Archived version of this repository: <Zenodo DOI>
