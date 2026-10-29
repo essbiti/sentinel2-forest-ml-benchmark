@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article and the archived code."
+title: "sentinel2-forest-ml-benchmark: code and demo data for Remote Sensing (2026)"
+type: software
+authors:
+  - family-names: "Essbiti"
+    given-names: "Mohamed Chikh"
+    affiliation: "Sultan Moulay Slimane University"
+    orcid: "https://orcid.org/0009-0003-2136-4276"
+version: 1.0.0
+date-released: 2026-10-29
+doi: 10.5281/zenodo.23770233
+repository-code: "https://github.com/essbiti/sentinel2-forest-ml-benchmark"
+license: MIT
+keywords:
+  - Sentinel-2
+  - forest mapping
+  - machine learning
+  - Google Earth Engine
+  - Morocco
+preferred-citation:
+  type: article
+  title: "Benchmarking Ten Machine-Learning Algorithms for Mediterranean Forest Mapping with Sentinel-2"
+  journal: "Remote Sensing"
+  year: 2026
+  authors:
+    - family-names: "Essbiti"
+      given-names: "Mohamed Chikh"
+    - family-names: "Dalal"
+      given-names: "Morad"
+    - family-names: "Jones"
+      given-names: "Simon"
+    - family-names: "Eloudi"
+      given-names: "Hasna"
+    - family-names: "Elaloui"
+      given-names: "Abdenbi"
+    - family-names: "Elhaou"
+      given-names: "Mohamed"
+    - family-names: "Ismaili"
+      given-names: "Maryem"
+    - family-names: "Saadon"
+      given-names: "Abdullah B."
+    - family-names: "Fnais"
+      given-names: "Mohammed S."
+    - family-names: "Abdelrahman"
+      given-names: "Kamal"
+    - family-names: "Krimissa"
+      given-names: "Samira"
+    - family-names: "Namous"
+      given-names: "Mustapha"
