@@ -1,7 +1,7 @@
 /*  Paper 2 – Sentinel-2 forest mapping, Béni Mellal–Khénifra (Morocco)
  *  Script 02: predictor stack (56 candidates), sample table, Hansen layers and map stack
  *  Author: Mohamed Chikh Essbiti, Sultan Moulay Slimane University
- *  Paper: <citation / DOI when published>   Code: <GitHub URL>   Archive: <Zenodo DOI>
+ *  Paper: <citation / DOI when published>   Code: https://github.com/essbiti/sentinel2-forest-ml-benchmark   Archive: <Zenodo DOI>
  *  Requires: a Google Earth Engine account linked to a Cloud project.
  *
  *  Exports (Tasks tab -> Run), all to the Google Drive folder P2_data:
