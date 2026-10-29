@@ -24,7 +24,7 @@ var bands = [
 // 2. Sentinel-2 median composite, 2025
 var image = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
   .filterDate('2025-01-01', '2026-01-01')               // end date is exclusive
-  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 8))
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10))
   .filterBounds(roi)
   .select(bands)   // keep these 10 bands in this order: the classifier expects them
   .median()
