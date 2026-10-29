@@ -3,9 +3,9 @@
 Code and demo data for:
 
 > Essbiti, M. C., et al. (2026). Benchmarking Ten Machine-Learning Algorithms for
-> Mediterranean Forest Mapping with Sentinel-2. *Remote Sensing*. DOI: <paper DOI>
+> Mediterranean Forest Mapping with Sentinel-2. *Remote Sensing*. DOI: to be added
 
-Archived version of this repository: <Zenodo DOI>
+Archived version of this repository: [https://doi.org/10.5281/zenodo.23770234](https://doi.org/10.5281/zenodo.23770234)
 
 ## Contents
 
