@@ -1,5 +1,5 @@
 /*  Paper 2 – Sentinel-2 forest mapping, Béni Mellal–Khénifra (Morocco)
- *  Script P2_01: Sentinel-2 median composite of the study area (2025)
+ *  Script 01: Sentinel-2 median composite of the study area (2025)
  *  Author: Mohamed Chikh Essbiti, Sultan Moulay Slimane University
  *  Paper: Remote Sensing (2026), DOI to be added   Code: https://github.com/essbiti/sentinel2-forest-ml-benchmark   Archive: https://doi.org/10.5281/zenodo.23770233
  *  Requires: a Google Earth Engine account linked to a Cloud project.
