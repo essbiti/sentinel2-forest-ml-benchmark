@@ -37,14 +37,16 @@ point both variables to your Drive folder (an example is in the configuration ce
 | 08 | `08_spatial_autocorrelation_of_errors` | Moran's I and join counts of test errors | 2.6, 3.3 · Table 8, Figure 8 |
 | 09 | `09_correlation_confusion_shap_figures` | Correlation matrices, confusion matrices, CatBoost SHAP | 3.1–3.4 · Figures 3–5, Table 3, Figure S2 |
 | **Maps** | | | |
-| 10 | `10_classified_map_figures` | Figures of the ten classified maps; agreement among models | 3.5 · Figures 11–12, Table 9 |
+| 10a | `10a_predict_classified_maps` | Applies the ten tuned models to the predictor stack (consistency check first); class areas and prediction times | 2.5, 3.5 · Table 9, Table S4 |
+| 10b | `10b_classified_map_figures` | Figures of the ten classified maps; agreement among models | 3.5 · Figures 11–12, Table 9 |
 | **Comparison with Hansen Global Forest Change** | | | |
 | 11 | `11_hansen_threshold_agreement` | Agreement at 10, 20, 30 and 50 % tree cover; Hansen gain and loss | 2.7, 3.7 · Table 11, Figure 14 |
 | 12 | `12_hansen_agreement_map` | Map of CatBoost–Hansen agreement classes | 3.7 |
 | 13 | `13_hansen_verification_sample` | Blind verification of CatBoost-only and Hansen-only pixels | 2.7, 3.7 · Table 12 |
 
 Steps 05–10 need the outputs of step 04 (`RESULTS_DIR/train_test_gap/`).
-Steps 10–13 also need the classified map tiles in `DATA_DIR/maps/<model>/`.
+Step 10a also needs the stack tiles `P2_stack_10m_part*.tif` exported by `gee/02_predictor_stack_and_exports.js`;
+steps 10b–13 use the classified map tiles it writes to `DATA_DIR/maps/<model>/`.
 
 Software versions used for the published results: Python 3.13, scikit-learn 1.6.1,
 XGBoost 3.4.1, CatBoost 1.2.10, SHAP 0.52.0, NumPy 2.1.3, pandas 2.2.3,
