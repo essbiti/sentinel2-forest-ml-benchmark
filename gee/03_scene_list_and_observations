@@ -1,0 +1,92 @@
+/*  Paper 2 – Sentinel-2 forest mapping, Béni Mellal–Khénifra (Morocco)
+ *  Script 03: documentation of the Sentinel-2 composite (scene list and observations per pixel)
+ *  Author: Mohamed Chikh Essbiti, Sultan Moulay Slimane University
+ *  Paper: Remote Sensing (2026), DOI to be added   Code: https://github.com/essbiti/sentinel2-forest-ml-benchmark   Archive: https://doi.org/10.5281/zenodo.23770233
+ *  Requires: a Google Earth Engine account linked to a Cloud project.
+ *
+ *  Uses exactly the same collection filters as the composite in scripts 01 and 02
+ *  (2025, scenes with < 10 % cloudy pixels). The composite itself is not changed.
+ *
+ *  Exports (Tasks tab -> Run), to the Google Drive folder P2_data:
+ *    P2_R2_2_scene_list.csv     one row per scene                              -> python step 01
+ *    P2_R2_3_observations.tif   band 1 n_obs  : scenes used per pixel (what the median saw)
+ *                               band 2 n_clear: of those, observations flagged clear by the
+ *                               L2A Scene Classification (diagnostic only)     -> python step 01
+ *  Put the downloaded files in the DATA_DIR folder used by the notebooks.
+ */
+
+// ---------------- INPUTS ----------------
+// Study area: Béni Mellal–Khénifra region (public asset)
+var roi = ee.FeatureCollection('projects/mapping-forest-degradation/assets/Paper3/Finished_Product/A01_Study_Area');
+var roiGeom = roi.geometry();
+
+var CRS = 'EPSG:32629';                   // same UTM 29N grid as the other scripts
+var OUT_FOLDER = 'P2_data';               // Google Drive folder for the exports
+
+// Same filters as the composite (no band selection here: SCL is needed for the diagnostic)
+var col = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+  .filterBounds(roi)
+  .filterDate('2025-01-01', '2026-01-01')          // end date is exclusive
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 10));
+
+print('Scenes used:', col.size());
+
+// ---------------- 1. SCENE LIST ----------------
+var scenes = col.map(function (img) {
+  return ee.Feature(null, {
+    product_id: img.get('PRODUCT_ID'),
+    system_index: img.get('system:index'),
+    mgrs_tile: img.get('MGRS_TILE'),
+    date: ee.Date(img.get('system:time_start')).format('YYYY-MM-dd'),
+    spacecraft: img.get('SPACECRAFT_NAME'),
+    relative_orbit: img.get('SENSING_ORBIT_NUMBER'),
+    cloudy_pixel_percentage: img.get('CLOUDY_PIXEL_PERCENTAGE'),
+    processing_baseline: img.get('PROCESSING_BASELINE')
+  });
+});
+print('Scenes per tile:', scenes.aggregate_histogram('mgrs_tile'));
+
+// File name kept so that python step 01 reads it without changes
+Export.table.toDrive({
+  collection: scenes,
+  description: 'P2_R2_2_scene_list',
+  folder: OUT_FOLDER,
+  fileFormat: 'CSV',
+  selectors: ['product_id', 'system_index', 'mgrs_tile', 'date', 'spacecraft', 'relative_orbit',
+              'cloudy_pixel_percentage', 'processing_baseline']
+});
+
+// ---------------- 2. OBSERVATIONS PER PIXEL ----------------
+var nObs = col.select('B4').count().rename('n_obs');
+
+// SCL: 4 vegetation, 5 not vegetated, 6 water, 7 unclassified, 11 snow = clear
+// (3 cloud shadow, 8-9 cloud, 10 cirrus, 0-2 no data / saturated / dark = not clear)
+var nClear = col.map(function (img) {
+  var scl = img.select('SCL');
+  return scl.eq(4).or(scl.eq(5)).or(scl.eq(6)).or(scl.eq(7)).or(scl.eq(11))
+            .selfMask().rename('n_clear');
+}).count().rename('n_clear');
+
+var obs = nObs.addBands(nClear).unmask(0).toInt16().clip(roiGeom);
+
+print('Observations per pixel (min / max / mean):',
+  obs.reduceRegion({
+    reducer: ee.Reducer.minMax().combine(ee.Reducer.mean(), '', true),
+    geometry: roiGeom, scale: 100, bestEffort: true, maxPixels: 1e9
+  }));
+
+Map.centerObject(roi, 8);
+Map.addLayer(obs.select('n_obs'), {min: 0, max: 60, palette: ['#fff7bc', '#fe9929', '#662506']}, 'n_obs');
+Map.addLayer(obs.select('n_clear'), {min: 0, max: 60, palette: ['#fff7bc', '#fe9929', '#662506']}, 'n_clear', false);
+
+// File name kept so that python step 01 reads it without changes
+Export.image.toDrive({
+  image: obs,
+  description: 'P2_R2_3_observations',
+  folder: OUT_FOLDER,
+  region: roiGeom,
+  crs: CRS,
+  crsTransform: [100, 0, 0, 0, -100, 0],          // 100 m is ample for a map figure
+  maxPixels: 1e13,
+  fileFormat: 'GeoTIFF'
+});
