@@ -23,9 +23,18 @@ preferred-citation:
   title: "Benchmarking Ten Machine-Learning Algorithms for Mediterranean Forest Mapping with Sentinel-2"
   journal: "Remote Sensing"
   year: 2026
+  volume: 18
+  issue: 21
+  start: 3774
+  doi: 10.3390/rs18213774
+  url: "https://doi.org/10.3390/rs18213774"
+  issn: "2072-4292"
+  publisher:
+    name: "MDPI"
   authors:
     - family-names: "Essbiti"
       given-names: "Mohamed Chikh"
+      orcid: "https://orcid.org/0009-0003-2136-4276"
     - family-names: "Dalal"
       given-names: "Morad"
     - family-names: "Jones"
