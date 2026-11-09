@@ -51,7 +51,28 @@ Results obtained with the demo samples **will differ from those reported in the 
 
 ## Citation
 
-If you use this code, please cite the paper above and the archived code (Zenodo DOI).
+If you use this code, please cite the paper:
+
+> Essbiti, M.C.; Dalal, M.; Jones, S.; Eloudi, H.; Elaloui, A.; Elhaou, M.; Ismaili, M.; Saadon, A.B.; Fnais, M.S.; Abdelrahman, K.; Krimissa, S.; Namous, M. Benchmarking Ten Machine-Learning Algorithms for Mediterranean Forest Mapping with Sentinel-2. *Remote Sensing* **2026**, *18*, 3774. https://doi.org/10.3390/rs18213774
+
+and the archived code:
+
+> Essbiti, M.C. sentinel2-forest-ml-benchmark: Code for "Benchmarking Ten Machine-Learning Algorithms for Mediterranean Forest Mapping with Sentinel-2". Zenodo, 2026. https://doi.org/10.5281/zenodo.23770233
+
+BibTeX:
+
+```bibtex
+@article{Essbiti2026,
+  author  = {Essbiti, Mohamed Chikh and Dalal, Morad and Jones, Simon and Eloudi, Hasna and Elaloui, Abdenbi and Elhaou, Mohamed and Ismaili, Maryem and Saadon, Abdullah B. and Fnais, Mohammed S. and Abdelrahman, Kamal and Krimissa, Samira and Namous, Mustapha},
+  title   = {Benchmarking Ten Machine-Learning Algorithms for Mediterranean Forest Mapping with Sentinel-2},
+  journal = {Remote Sensing},
+  year    = {2026},
+  volume  = {18},
+  number  = {21},
+  pages   = {3774},
+  doi     = {10.3390/rs18213774}
+}
+```
 
 ## License
 
